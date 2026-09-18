@@ -1,0 +1,19 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "ziyue.tjmetro.forge.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "AbstractMinecartContainerMixin",
+        "FallingBlockMixin",
+        "GameRuleBooleanAccessor",
+        "GameRuleIntegerAccessor",
+        "LevelChunkMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "client": [
+    ],
+    "refmap": "tjmetro-forge.refmap.json"
+}

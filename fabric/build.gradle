@@ -1,0 +1,48 @@
+import ziyue.tjmetro.buildtools.BuildTools
+
+plugins {
+	id 'fabric-loom' version '1.17.19'
+}
+
+final BuildTools buildTools = new BuildTools(minecraft_version)
+
+version = "${rootProject.mod_version}+${rootProject.minecraft_version}"
+
+loom {
+	runConfigs.configureEach { ideConfigGenerated = true }
+	mixin {
+		useLegacyMixinAp = true
+		setDefaultRefmapName("tjmetro.refmap.json")
+	}
+}
+
+repositories {
+	maven { url = "https://maven.terraformersmc.com/" }
+	maven { url = "https://maven.shedaniel.me/" }
+	flatDir { dirs "${rootProject.projectDir}/../libs" }
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${buildTools.dependencies.fabricLoader()}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${buildTools.dependencies.fabricApi()}"
+	modCompileOnly "com.terraformersmc:modmenu:${buildTools.dependencies.modMenu()}"
+	modCompileOnly("me.shedaniel.cloth:cloth-config-fabric:21.11.153") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+	compileOnly files("${rootProject.projectDir}/../libs/MTR-fabric-4.0.5+1.21.11-compile.jar")
+	compileOnly files("${rootProject.projectDir}/../libs/MTR-fabric-4.0.5+1.21.11.jar")
+	compileOnly files("${rootProject.projectDir}/../libs/filters-fabric-1.0.0-1.21.11+1.21.11.jar")
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
+	options.compilerArgs << '-Xmaxerrs' << '2000'
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+	withSourcesJar()
+}

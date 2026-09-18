@@ -1,0 +1,67 @@
+{
+    "schemaVersion": 1,
+    "id": "tjmetro",
+    "version": "${version}",
+    "name": "Tianjin Metro",
+    "description": "A small addon for the Minecraft Transit Railway Mod.",
+    "authors": [
+        "ZiYueCommentary"
+    ],
+    "contributors": [
+        "user111192",
+        "白云-burgeoning",
+        "CinderaceOTS",
+        "Jonas",
+        "Jonathan Ho",
+        "Boris Keladen",
+        "Miso Horalka",
+        "Digo",
+        "Steven Ohms",
+        "recex",
+        "Le confiné"
+    ],
+    "contact": {
+        "homepage": "https://modrinth.com/mod/tianjin-metro",
+        "sources": "https://github.com/ZiYueCommentary/Tianjin-Metro",
+        "issues": "https://github.com/ZiYueCommentary/Tianjin-Metro/issues"
+    },
+    "custom" : {
+        "modmenu": {
+            "links": {
+                "modmenu.crowdin": "https://weblate.ziyuesinicization.site/engage/tianjin-metro/",
+                "modmenu.discord": "https://discord.gg/mEvEjPnVXe",
+                "modmenu.kofi": "https://ko-fi.com/ziyuecommentary",
+                "modmenu.youtube": "https://www.youtube.com/@ziyuecommentary"
+            }
+        }
+    },
+    "license": "MIT",
+    "icon": "icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "modmenu": [
+            "ziyue.tjmetro.fabric.ModMenuConfig"
+        ],
+        "main": [
+            "ziyue.tjmetro.fabric.MainFabric"
+        ],
+        "client": [
+            "ziyue.tjmetro.fabric.MainFabricClient"
+        ]
+    },
+    "mixins": [
+        "tjmetro.mixins.json",
+        "tjmetro-fabric.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.19.3",
+        "fabric": "*",
+        "minecraft": "${minecraft_version}",
+        "filters": "1.0.0-1.21.11+1.21.11",
+        "mtr": "${mtr_version}",
+        "java": ">=21"
+    },
+    "suggests": {
+        "cloth-config": "*"
+    }
+}

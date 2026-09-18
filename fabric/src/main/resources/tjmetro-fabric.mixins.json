@@ -1,0 +1,15 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "ziyue.tjmetro.fabric.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "FallingBlockMixin",
+        "WorldChunkMixin",
+        "StorageMinecartEntityMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "refmap": "tjmetro.refmap.json"
+}
