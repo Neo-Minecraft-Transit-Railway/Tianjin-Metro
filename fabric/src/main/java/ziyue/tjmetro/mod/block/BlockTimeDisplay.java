@@ -26,7 +26,7 @@ import java.util.List;
 public class BlockTimeDisplay extends BlockExtension implements DirectionHelper, BlockWithEntity
 {
     public BlockTimeDisplay() {
-        this(Blocks.createDefaultBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(true).nonOpaque());
     }
 
     public BlockTimeDisplay(BlockSettings blockSettings) {
@@ -47,7 +47,8 @@ public class BlockTimeDisplay extends BlockExtension implements DirectionHelper,
     @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return IBlock.getVoxelShapeByDirection(-3, 8.5, 6, 18, 16, 10, IBlock.getStatePropertySafe(state, FACING));
+        // Match model hanging into the block above (y 24.5..32).
+        return IBlock.getVoxelShapeByDirection(-3, 24.5, 6, 18, 32, 10, IBlock.getStatePropertySafe(state, FACING));
     }
 
     @Override
@@ -63,11 +64,12 @@ public class BlockTimeDisplay extends BlockExtension implements DirectionHelper,
     public static class BlockEntity extends BlockEntityRenderable
     {
         public BlockEntity(BlockPos pos, BlockState state) {
-            super(BlockEntityTypes.TIME_DISPLAY.get(), pos, state, 0.21F, 0.63F);
+            // Model hangs in y=24.5..32 (into the block above); keep text centered in that band.
+            super(BlockEntityTypes.TIME_DISPLAY.get(), pos, state, 1.21F, 0.63F);
         }
 
         public BlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
-            super(type, pos, state, 0.21F, 0.63F);
+            super(type, pos, state, 1.21F, 0.63F);
         }
     }
 }

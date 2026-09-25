@@ -35,4 +35,19 @@ public interface RegistryHelper
 	static ItemStack getItemStackByIdentifier(Identifier identifier) {
 		return new ItemStack(BuiltInRegistries.ITEM.getValue(identifier.data));
 	}
+
+	/**
+	 * Resolve an item id string into a stack. Invalid / empty / unknown ids become empty
+	 * (air) instead of throwing — used when migrating old metal-detection-door NBT.
+	 */
+	static ItemStack getItemStackByIdentifierSafe(String id) {
+		if (id == null || id.isEmpty() || "null".equalsIgnoreCase(id) || "minecraft:air".equals(id)) {
+			return ItemStack.EMPTY;
+		}
+		try {
+			return getItemStackByIdentifier(new Identifier(id));
+		} catch (Exception e) {
+			return ItemStack.EMPTY;
+		}
+	}
 }

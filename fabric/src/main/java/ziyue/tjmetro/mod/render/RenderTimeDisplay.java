@@ -73,6 +73,11 @@ public class RenderTimeDisplay<T extends BlockTimeDisplay.BlockEntity> extends B
         }
     }
 
+    @Override
+    public boolean rendersOutsideBoundingBox2(T blockEntity) {
+        return true;
+    }
+
     public static String getFormattedTime(long ticks) {
         int hours = (int) ((Math.floor(ticks / 1000.0) + 6) % 24);
         int minutes = (int) Math.floor((ticks % 1000) / 1000.0 * 60);

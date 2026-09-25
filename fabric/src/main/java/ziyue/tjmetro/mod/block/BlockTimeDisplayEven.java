@@ -23,7 +23,7 @@ import java.util.List;
 public class BlockTimeDisplayEven extends BlockExtension implements DirectionHelper, BlockWithEntity
 {
     public BlockTimeDisplayEven() {
-        this(Blocks.createDefaultBlockSettings(false));
+        this(Blocks.createDefaultBlockSettings(true).nonOpaque());
     }
 
     public BlockTimeDisplayEven(BlockSettings blockSettings) {
@@ -50,7 +50,7 @@ public class BlockTimeDisplayEven extends BlockExtension implements DirectionHel
     @Nonnull
     @Override
     public VoxelShape getOutlineShape2(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return IBlock.getVoxelShapeByDirection(5, 8.5, 6, 16, 16, 10, IBlock.getStatePropertySafe(state, FACING));
+        return IBlock.getVoxelShapeByDirection(5, 24.5, 6, 16, 32, 10, IBlock.getStatePropertySafe(state, FACING));
     }
 
     @Override
